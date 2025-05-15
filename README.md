@@ -1,2 +1,2 @@
-# tic-tac-toe-gui
-HI TICTACTOE
+# GOLAGOLA
+HI GOLAGOLA
