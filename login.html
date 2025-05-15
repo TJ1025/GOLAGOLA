@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOLAGOLA - 로그인</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+            font-family: 'Cafe24Nyangi-W-v1.0';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/Cafe24Nyangi-W-v1.0.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'HancomMalangMalang-Regular';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2406-1@1.0/HancomMalangMalang-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+        body { 
+            font-family: 'HancomMalangMalang-Regular', 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #6EE7B7, #3B82F6, #F472B6);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .fade-in { 
+            animation: fadeIn 1s ease-in; 
+        }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+        .btn-hover:hover {
+            transform: scale(1.05);
+            background-color: #EC4899;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .gola-font {
+            font-family: 'Cafe24Nyangi-W-v1.0', sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- 헤더 -->
+    <header class="bg-white shadow-sm py-4 sticky top-0 z-10">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-pink-500"><span class="gola-font">GOLAGOLA</span></h1>
+            <nav>
+                <ul class="flex space-x-6 text-gray-700">
+                    <li><a href="index.html" class="hover:text-pink-500 transition">홈</a></li>
+                    <li><a href="random.html" class="hover:text-pink-500 transition">랜덤 도구</a></li>
+                    <li><a href="community.html" class="hover:text-pink-500 transition">커뮤니티</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 메인 섹션 -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-white text-center mb-8 fade-in drop-shadow-lg">로그인</h2>
+            <p class="text-lg text-white text-center mb-12 max-w-2xl mx-auto fade-in drop-shadow"><span class="gola-font">GOLAGOLA</span> 커뮤니티에 참여하려면 로그인하세요!</p>
+
+            <!-- 로그인 폼 -->
+            <div class="bg-white bg-opacity-90 p-8 rounded-xl shadow-xl max-w-lg mx-auto fade-in">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">계정으로 접속</h3>
+                <form class="space-y-4">
+                    <input type="text" id="loginId" placeholder="아이디" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300">
+                    <input type="password" id="loginPassword" placeholder="비밀번호" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300">
+                    <button type="submit" onclick="handleLogin()" class="bg-pink-500 text-white px-6 py-3 rounded-lg font-semibold btn-hover">로그인</button>
+                </form>
+                <p class="text-center text-gray-600 mt-4">계정이 없으신가요? <a href="signup.html" class="text-pink-500 hover:underline">회원가입</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p>© GOLAGOLA. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function handleLogin() {
+            const id = document.getElementById('loginId').value;
+            const password = document.getElementById('loginPassword').value;
+            if (!id || !password) {
+                alert('아이디와 비밀번호를 입력해주세요!');
+                return;
+            }
+            const user = JSON.parse(localStorage.getItem('user_' + id));
+            if (user && user.password === password) {
+                localStorage.setItem('loggedInUser', id);
+                alert('로그인 성공!');
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirect = urlParams.get('redirect') || 'index.html';
+                const options = urlParams.get('options');
+                window.location.href = options ? `${redirect}?options=${encodeURIComponent(options)}` : redirect;
+            } else {
+                alert('아이디 또는 비밀번호가 잘못되었습니다.');
+            }
+        }
+    </script>
+</body>
+</html>
