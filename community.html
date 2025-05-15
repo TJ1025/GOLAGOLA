@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOLAGOLA - 커뮤니티 피드백</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+            font-family: 'Cafe24Nyangi-W-v1.0';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/Cafe24Nyangi-W-v1.0.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'HancomMalangMalang-Regular';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2406-1@1.0/HancomMalangMalang-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+        body { 
+            font-family: 'HancomMalangMalang-Regular', 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #6EE7B7, #3B82F6, #F472B6);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .fade-in { 
+            animation: fadeIn 1s ease-in; 
+        }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+        .btn-hover:hover {
+            transform: scale(1.05);
+            background-color: #EC4899;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .gola-font {
+            font-family: 'Cafe24Nyangi-W-v1.0', sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- 헤더 -->
+    <header class="bg-white shadow-sm py-4 sticky top-0 z-10">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-pink-500"><span class="gola-font">GOLAGOLA</span></h1>
+            <nav>
+                <ul class="flex space-x-6 text-gray-700 items-center">
+                    <li><a href="index.html" class="hover:text-pink-500 transition">홈</a></li>
+                    <li><a href="random.html" class="hover:text-pink-500 transition">랜덤 도구</a></li>
+                    <li><a href="community.html" class="font-bold text-pink-500">커뮤니티</a></li>
+                    <li id="authSection">
+                        <a href="login.html" class="hover:text-pink-500 transition">로그인</a>
+                        <span class="mx-2 text-gray-500">|</span>
+                        <a href="signup.html" class="hover:text-pink-500 transition">회원가입</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 메인 섹션 -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-white text-center mb-8 fade-in drop-shadow-lg"><span class="gola-font">GOLAGOLA</span> 커뮤니티</h2>
+            <p class="text-lg text-white text-center mb-12 max-w-2xl mx-auto fade-in drop-shadow">친구들과 함께 고민을 공유하고 투표로 최적의 선택을 찾아보세요!</p>
+
+            <!-- 고민 작성 폼 -->
+            <div id="postForm" class="bg-white bg-opacity-90 p-8 rounded-xl shadow-xl max-w-3xl mx-auto mb-12 fade-in">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">고민 공유하기</h3>
+                <form class="space-y-4">
+                    <input type="text" id="postTitle" placeholder="고민 제목 (예: 오늘 점심 뭐 먹지?)" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300">
+                    <textarea id="postDescription" placeholder="자세한 설명 (예: 짜장면, 짬뽕, 탕수육 중 고민돼요!)" class="w-full p-3 border rounded-lg h-32 focus:outline-none focus:ring-2 focus:ring-pink-300"></textarea>
+                    <div class="flex space-x-4">
+                        <input type="text" id="option1" placeholder="옵션 1 (예: 짜장면)" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300">
+                        <input type="text" id="option2" placeholder="옵션 2 (예: 짬뽕)" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300">
+                        <input type="text" id="option3" placeholder="옵션 3 (예: 탕수육)" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300">
+                    </div>
+                    <button type="submit" onclick="submitPost()" class="bg-pink-500 text-white px-6 py-3 rounded-lg font-semibold btn-hover">고민 올리기</button>
+                </form>
+            </div>
+
+            <!-- 피드백 피드 -->
+            <div class="space-y-8">
+                <!-- 피드백 카드 예시 -->
+                <div class="bg-white bg-opacity-90 p-8 rounded-xl shadow-xl max-w-3xl mx-auto fade-in">
+                    <div class="flex items-center mb-4">
+                        <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-10 h-10 rounded-full mr-4">
+                        <div>
+                            <p class="font-semibold text-gray-800" id="postUser">창민</p>
+                            <p class="text-sm text-gray-500">2시간 전</p>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">오늘 점심 뭐 먹지?</h3>
+                    <p class="text-gray-600 mb-4">짜장면, 짬뽕, 탕수육 중에 고민돼요. 뭐가 좋을까요?</p>
+                    <div class="flex space-x-4 mb-4">
+                        <button class="bg-pink-100 text-pink-600 px-4 py-2 rounded-lg btn-hover">짜장면 (5표)</button>
+                        <button class="bg-pink-100 text-pink-600 px-4 py-2 rounded-lg btn-hover">짬뽕 (3표)</button>
+                        <button class="bg-pink-100 text-pink-600 px-4 py-2 rounded-lg btn-hover">탕수육 (2표)</button>
+                    </div>
+                    <div class="border-t pt-4">
+                        <p class="text-gray-600"><span class="font-semibold">주연:</span> 짬뽕 강추! 매콤한 게 당긴다~</p>
+                        <p class="text-gray-600"><span class="font-semibold">재현:</span> 탕수육이 최고지!</p>
+                    </div>
+                    <button class="mt-4 text-pink-500 hover:underline">댓글 더 보기</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p>© GOLAGOLA. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 로그인 상태 확인
+        function checkLoginStatus() {
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            const authSection = document.getElementById('authSection');
+            const postForm = document.getElementById('postForm');
+            if (loggedInUser) {
+                const user = JSON.parse(localStorage.getItem('user_' + loggedInUser));
+                authSection.innerHTML = `
+                    <span class="text-pink-500">${user.name}님</span>
+                    <span class="mx-2 text-gray-500">|</span>
+                    <button onclick="logout()" class="text-gray-700 hover:text-pink-500 transition">로그아웃</button>
+                `;
+                document.getElementById('postUser').textContent = user.name;
+            } else {
+                postForm.innerHTML = `
+                    <p class="text-center text-gray-800">커뮤니티에 참여하려면 로그인이 필요합니다!</p>
+                    <a href="login.html?redirect=community.html" class="block text-center bg-pink-500 text-white px-6 py-3 rounded-lg font-semibold btn-hover mt-4">로그인</a>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('loggedInUser');
+            alert('로그아웃되었습니다!');
+            window.location.href = 'index.html';
+        }
+
+        function submitPost() {
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            if (!loggedInUser) {
+                alert('로그인이 필요합니다!');
+                window.location.href = 'login.html?redirect=community.html';
+                return;
+            }
+            const title = document.getElementById('postTitle').value;
+            const description = document.getElementById('postDescription').value;
+            const option1 = document.getElementById('option1').value;
+            const option2 = document.getElementById('option2').value;
+            const option3 = document.getElementById('option3').value;
+            if (!title || !description || !option1 || !option2) {
+                alert('제목, 설명, 최소 2개의 옵션을 입력해주세요!');
+                return;
+            }
+            alert('고민이 공유되었습니다!');
+            // 실제로는 백엔드로 데이터 전송
+        }
+
+        // 페이지 로드 시 로그인 상태 확인
+        window.onload = checkLoginStatus;
+    </script>
+</body>
+</html>
