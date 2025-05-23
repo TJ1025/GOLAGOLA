@@ -1,1 +1,5 @@
-GOLAGOLA is an innovative solution for dealing with selection disorders. It helps you make decisions easily through random decision tools, AI-based recommendations, and community feedback provided by GolagolA on various issues such as eating, movies, and travel destinations. Users can exchange opinions with friends in real time and make decisions, and experience more enjoyable and stress-free choices through fun voting, AI advice, and personalized recommendations.
+# GOLAGOLA
+
+MyWeather
+현재 날씨와 1시간 간격의 날씨를 보여주는 웹페이지
+HTML, CSS, JS
