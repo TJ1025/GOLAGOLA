@@ -1,2 +1,5 @@
 # GOLAGOLA
-HI GOLAGOLA
+
+frontend
+main page, random page, 
+
