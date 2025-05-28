@@ -72,6 +72,7 @@
 
     <section id="home" class="py-20 text-center">
         <div class="container mx-auto px-4 fade-in">
+            <h1>Solving Decision Paralysis</h1>
             <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">선택장애? <span class="gola-font">GOLAGOLA</span>로 해결!</h2>
             <p class="text-lg text-white mb-8 max-w-2xl mx-auto drop-shadow">다양한 랜덤 도구와 친구들의 피드백으로 간편하게 선택해보세요.</p>
             <!-- 선택 시작 폼 -->
@@ -90,7 +91,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="p-6 rounded-xl shadow-xl bg-white bg-opacity-90 text-center fade-in">
                     <h3 class="text-xl font-semibold text-gray-800 mb-4">랜덤 도구</h3>
-                    <p class="text-gray-600 mb-4">룰렛, 사다리타기, 레이스 등으로 빠르고 재미있게!</p>
+                    <p class="text-gray-600 mb-4">룰렛, 사다리타기, 레이스 등으로 골라골라!</p>
                     <a href="random.html" class="inline-block bg-pink-500 text-white px-6 py-3 rounded-lg font-semibold btn-hover">도구 선택</a>
                 </div>
                 <div class="p-6 rounded-xl shadow-xl bg-white bg-opacity-90 text-center fade-in">
@@ -100,7 +101,7 @@
                 </div>
                 <div class="p-6 rounded-xl shadow-xl bg-white bg-opacity-90 text-center fade-in">
                     <h3 class="text-xl font-semibold text-gray-800 mb-4">커뮤니티</h3>
-                    <p class="text-gray-600 mb-4">친구들과 투표로 함께 결정을 내려보세요. 그리고 다양한 의견들을 구경해보세요.</p>
+                    <p class="text-gray-600 mb-4">친구들과 투표로 함께 결정을 내려보세요. 그리고 다양한 의견들을 나눠보세요.</p>
                     <a href="community.html" class="inline-block bg-pink-500 text-white px-6 py-3 rounded-lg font-semibold btn-hover">참여하기</a>
                 </div>
             </div>
@@ -142,7 +143,7 @@
         function startDecision() {
             const input = document.getElementById('quickDecision').value;
             if (!input) {
-                alert('고민을 입력해주세요!');
+                alert('고민을 입력해주세요! 커뮤니티로 입력하고 소통해보세요.');
                 return;
             }
             const loggedInUser = localStorage.getItem('loggedInUser');
