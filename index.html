@@ -127,18 +127,26 @@
     }
 };
         function checkLoginStatus() {
-            
-            const loggedInUser = localStorage.getItem('loggedInUser');
-            const authSection = document.getElementById('authSection');
-            if (loggedInUser) {
-                const user = JSON.parse(localStorage.getItem('user_' + loggedInUser));
-                authSection.innerHTML = `
-                    <span class="text-pink-500">${user.name}님</span>
-                    <span class="mx-2 text-gray-500">|</span>
-                    <button onclick="logout()" class="text-gray-700 hover:text-pink-500 transition">로그아웃</button>
-                `;
-            }
-        }
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    const authSection = document.getElementById('authSection');
+
+    if (loggedInUser) {
+        const user = JSON.parse(loggedInUser);
+        authSection.innerHTML = `
+            <span class="text-pink-500">${user.name}님</span>
+            <span class="mx-2 text-gray-500">|</span>
+            <a href="profile.html" class="text-gray-700 hover:text-pink-500 transition">내 프로필</a>
+            <span class="mx-2 text-gray-500">|</span>
+            <button onclick="logout()" class="text-gray-700 hover:text-pink-500 transition">로그아웃</button>
+        `;
+    }
+}
+function logout() {
+    localStorage.removeItem("loggedInUser");
+    window.location.reload();
+}
+
+
         
         function startDecision() {
             const input = document.getElementById('quickDecision').value;
