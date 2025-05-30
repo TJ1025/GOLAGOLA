@@ -5,49 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GOLAGOLA - 로그인</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @font-face {
-            font-family: 'Cafe24Nyangi-W-v1.0';
-            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/Cafe24Nyangi-W-v1.0.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'HancomMalangMalang-Regular';
-            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2406-1@1.0/HancomMalangMalang-Regular.woff2') format('woff2');
-            font-weight: 400;
-            font-style: normal;
-        }
-        body { 
-            font-family: 'HancomMalangMalang-Regular', 'Inter', sans-serif; 
-            background: linear-gradient(135deg, #6EE7B7, #3B82F6, #F472B6);
-            background-size: 200% 200%;
-            animation: gradientShift 15s ease infinite;
-        }
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .fade-in { 
-            animation: fadeIn 1s ease-in; 
-        }
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(20px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-        .btn-hover {
-            transition: all 0.3s ease;
-        }
-        .btn-hover:hover {
-            transform: scale(1.05);
-            background-color: #EC4899;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        .gola-font {
-            font-family: 'Cafe24Nyangi-W-v1.0', sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body class="min-h-screen">
     <!-- 헤더 -->
@@ -76,7 +34,7 @@
                 <form class="space-y-4">
                     <input type="text" id="loginId" placeholder="아이디" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300">
                     <input type="password" id="loginPassword" placeholder="비밀번호" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300">
-                    <button type="submit" onclick="handleLogin(event)" class="bg-pink-500 text-white px-6 py-3 rounded-lg font-semibold btn-hover">로그인</button>
+                    <button type="submit" onclick="handleLogin()" class="bg-pink-500 text-white px-6 py-3 rounded-lg font-semibold btn-hover">로그인</button>
                 </form>
                 <p class="text-center text-gray-600 mt-4">계정이 없으신가요? <a href="signup.html" class="text-pink-500 hover:underline">회원가입</a></p>
             </div>
@@ -90,27 +48,6 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script>
-function handleLogin(event) {
-    event.preventDefault();
-
-    const userId = document.getElementById('loginId').value;
-    const password = document.getElementById('loginPassword').value;
-
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-
-    const user = users.find(u => u.userId === userId && u.password === password);
-
-    if (user) {
-        alert(`${user.name}님 환영합니다!`);
-        localStorage.setItem("loggedInUser", JSON.stringify(user));
-        window.location.href = "index.html"; // 로그인 후 이동할 페이지
-    } else {
-        alert("아이디 또는 비밀번호가 틀렸습니다.");
-    }
-}
-    </script>
-
+    <script src="login.js"></script>
 </body>
 </html>
