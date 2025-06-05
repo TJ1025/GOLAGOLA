@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GOLAGOLA - 선택장애 해결 솔루션</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="min-h-screen">
-    <!-- 헤더 -->
     <header class="bg-white shadow-sm py-4 sticky top-0 z-10">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold text-pink-500 gola-font">GOLAGOLA</h1>
@@ -26,14 +25,13 @@
             </nav>
         </div>
     </header>
+</section>
 
-    <!-- 메인 섹션 -->
     <section id="home" class="py-20 text-center">
         <div class="container mx-auto px-4 fade-in">
             <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">선택장애? <span class="gola-font">GOLAGOLA</span>로 해결!</h2>
             <p class="text-lg text-white mb-8 max-w-2xl mx-auto drop-shadow">Solving Decision Paralysis</p>
             <p class="text-lg text-white mb-8 max-w-2xl mx-auto drop-shadow">다양한 랜덤 도구와 친구들의 피드백으로 간편하게 선택해보세요.</p>
-            <!-- 선택 시작 폼 -->
             <div class="bg-white bg-opacity-90 p-8 rounded-xl shadow-xl max-w-lg mx-auto">
                 <h3 class="text-xl font-semibold text-gray-800 mb-4">고민을 입력하세요!</h3>
                 <input type="text" id="quickDecision" placeholder="고민 입력 (예: 짜장면,짬뽕,탕수육)" class="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-pink-300">
@@ -42,14 +40,6 @@
         </div>
     </section>
 
-    <!-- 빈 네모 상자 -->
-    <div class="container mx-auto px-4 py-12 fade-in">
-        <div class="border-4 border-dashed border-white rounded-xl h-40">
-           <iframe src="frontend/index.html"></iframe>
-        </div>
-    </div>
-
-    <!-- 선택 도구 섹션 -->
     <section id="features" class="py-16 bg-transparent">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-white text-center mb-12 drop-shadow-lg"><span class="gola-font">GOLAGOLA</span>로 선택장애 고민 해결</h2>
@@ -62,9 +52,7 @@
                 <div class="p-6 rounded-xl shadow-xl bg-white bg-opacity-90 text-center fade-in">
                     <h3 class="text-xl font-semibold text-gray-800 mb-4">AI 추천</h3>
                     <p class="text-gray-600 mb-4">당신의 취향에 맞춘 스마트한 제안을 받아보세요.</p>
-                <a href="frontend/index.html">
-                    <button class="bg-pink-500 text-white px-6 py-3 rounded-lg font-semibold btn-hover">클릭해주세요!</button>
-                </a>
+                    <button class="bg-pink-500 text-white px-6 py-3 rounded-lg font-semibold btn-hover">곧 출시!</button>
                 </div>
                 <div class="p-6 rounded-xl shadow-xl bg-white bg-opacity-90 text-center fade-in">
                     <h3 class="text-xl font-semibold text-gray-800 mb-4">커뮤니티</h3>
@@ -75,57 +63,12 @@
         </div>
     </section>
 
-    <!-- 푸터 -->
     <footer class="bg-gray-800 text-white py-4">
         <div class="container mx-auto px-4 text-center">
             <p>© GOLAGOLA. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="index.js"></script>
-
-    <!-- JavaScript -->
-    <script>
-        function checkLoginStatus() {
-            const loggedInUser = localStorage.getItem('loggedInUser');
-            const authSection = document.getElementById('authSection');
-
-            if (loggedInUser) {
-                const user = JSON.parse(loggedInUser);
-                authSection.innerHTML = `
-                    <span class="text-pink-500">${user.name}님</span>
-                    <span class="mx-2 text-gray-500">|</span>
-                    <a href="profile.html" class="text-gray-700 hover:text-pink-500 transition">내 프로필</a>
-                    <span class="mx-2 text-gray-500">|</span>
-                    <button onclick="logout()" class="text-gray-700 hover:text-pink-500 transition">로그아웃</button>
-                `;
-            }
-        }
-
-        function logout() {
-            localStorage.removeItem("loggedInUser");
-            window.location.reload();
-        }
-
-        function startDecision() {
-            const input = document.getElementById('quickDecision').value;
-            if (!input) {
-                alert('고민을 입력해주세요! 커뮤니티로 입력하고 소통해보세요.');
-                return;
-            }
-            const loggedInUser = localStorage.getItem('loggedInUser');
-            if (loggedInUser) {
-                alert(`입력된 고민: ${input}\n랜덤 도구로 이동합니다!`);
-                window.location.href = `random.html?options=${encodeURIComponent(input)}`;
-            } else {
-                alert('커뮤니티에 공유하려면 로그인이 필요합니다!');
-                window.location.href = `login.html?redirect=random.html&options=${encodeURIComponent(input)}`;
-            }
-        }
-
-        // 페이지 로드 시 로그인 상태 확인
-        window.onload = checkLoginStatus;
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
