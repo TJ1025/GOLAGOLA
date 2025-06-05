@@ -1,9 +1,13 @@
+const users = JSON.parse(localStorage.getItem("users")) || [];
+
 function requestVerification() {
     alert('인증 코드가 발송되었습니다! (예: 123456)');
     document.getElementById('verifyCode').disabled = false;
 }
 
-async function handleSignup() {
+function handleSignup(event) {
+    event.preventDefault();
+
     const name = document.getElementById('name').value;
     const userId = document.getElementById('id').value;
     const gender = document.getElementById('gender').value;
@@ -22,28 +26,29 @@ async function handleSignup() {
         return;
     }
 
-    if (verifyCode !== '123456') {
+    if (verifyCode !== '123456') { // This is a hardcoded verification code for demonstration
         alert('인증 코드가 올바르지 않습니다!');
         return;
     }
 
-    try {
-        const response = await apiCall('/auth/signup', 'POST', {
-            name,
-            userId,
-            gender,
-            birthdate,
-            password,
-            verifyCode
-        });
+    const users = JSON.parse(localStorage.getItem("users")) || [];
 
-        if (response.message === '회원가입 성공!') {
-            alert('회원가입 성공! 로그인 페이지로 이동합니다.');
-            window.location.href = 'login.html';
-        } else {
-            alert(response.message);
-        }
-    } catch (err) {
-        alert('회원가입 중 오류가 발생했습니다.');
+    if (users.some(user => user.userId === userId)) {
+        alert('이미 존재하는 아이디입니다!');
+        return;
     }
+
+    const newUser = {
+        name,
+        userId,
+        gender,
+        birthdate,
+        password
+    };
+
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert('회원가입 성공! 로그인 페이지로 이동합니다.');
+    window.location.href = 'login.html';
 }
