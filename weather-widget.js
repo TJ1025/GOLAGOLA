@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const encodedApiKey = encodeURIComponent(KMA_API_KEY);
         // 초단기 예보를 사용하여 현재 시간대의 값을 가져옴 (항목 수가 더 많음)
-        const serviceUrl = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst';
+        const serviceUrl = 'https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst';
         return `${serviceUrl}?serviceKey=${encodedApiKey}&pageNo=1&numOfRows=60&dataType=JSON&base_date=${baseDate}&base_time=${baseTime}&nx=${nx}&ny=${ny}`;
     }
 
