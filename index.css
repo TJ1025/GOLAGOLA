@@ -12,7 +12,7 @@
 }
 body { 
     font-family: 'HancomMalangMalang-Regular', 'Inter', sans-serif;
-    background: linear-gradient(135deg, #9bb63d, #3B82F6, #da72f4);
+    background: linear-gradient(135deg, #6EE7B7, #3B82F6, #F472B6);
     background-size: 200% 200%;
     animation: gradientShift 15s ease infinite;
 }
