@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GOLAGOLA - 회원가입</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="min-h-screen">
-    <!-- 헤더 -->
     <header class="bg-white shadow-sm py-4 sticky top-0 z-10">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold text-pink-500 gola-font">GOLAGOLA</h1>
@@ -22,13 +21,11 @@
         </div>
     </header>
 
-    <!-- 메인 섹션 -->
     <section class="py-20">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-white text-center mb-8 fade-in drop-shadow-lg">회원가입</h2>
             <p class="text-lg text-white text-center mb-12 max-w-2xl mx-auto fade-in drop-shadow"><span class="gola-font">GOLAGOLA</span>에 가입해 선택의 재미를 함께 즐기세요!</p>
 
-            <!-- 회원가입 폼 -->
             <div class="bg-white bg-opacity-90 p-8 rounded-xl shadow-xl max-w-lg mx-auto fade-in">
                 <h3 class="text-xl font-semibold text-gray-800 mb-4">회원 정보 입력</h3>
                 <form class="space-y-4">
@@ -52,77 +49,3 @@
                 <p class="text-center text-gray-600 mt-4">이미 계정이 있으신가요? <a href="login.html" class="text-pink-500 hover:underline">로그인</a></p>
             </div>
         </div>
-    </section>
-
-    <!-- 푸터 -->
-    <footer class="bg-gray-800 text-white py-4">
-        <div class="container mx-auto px-4 text-center">
-            <p>© GOLAGOLA. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="utils.js"></script>
-
-    <script src="signup.js"></script>
-
-
-    <!-- JavaScript -->
-    <script>
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-
-    function requestVerification() {
-        alert('인증 코드가 발송되었습니다! (예: 123456)');
-        document.getElementById('verifyCode').disabled = false;
-    }
-
-    function handleSignup(event) {
-        event.preventDefault();
-
-        const name = document.getElementById('name').value;
-        const userId = document.getElementById('id').value;
-        const gender = document.getElementById('gender').value;
-        const birthdate = document.getElementById('birthdate').value;
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
-        const verifyCode = document.getElementById('verifyCode').value;
-
-        if (!name || !userId || !gender || !birthdate || !password || !confirmPassword || !verifyCode) {
-            alert('모든 필드를 입력해주세요!');
-            return;
-        }
-
-        if (password !== confirmPassword) {
-            alert('비밀번호가 일치하지 않습니다!');
-            return;
-        }
-
-        if (verifyCode !== '123456') {
-            alert('인증 코드가 올바르지 않습니다!');
-            return;
-        }
-
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-
-        if (users.some(user => user.userId === userId)) {
-            alert('이미 존재하는 아이디입니다!');
-            return;
-        }
-
-        const newUser = {
-            name,
-            userId,
-            gender,
-            birthdate,
-            password
-        };
-
-        users.push(newUser);
-        localStorage.setItem("users", JSON.stringify(users));
-
-        alert('회원가입 성공! 로그인 페이지로 이동합니다.');
-        window.location.href = 'login.html';
-    }        
-    </script>
-
-</body>
-</html>
