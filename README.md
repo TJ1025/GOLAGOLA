@@ -2,16 +2,16 @@
 Golagola is a web application designed to help users overcome decision paralysis by providing intuitive tools and personalized recommendations. 
 Whether you're choosing what to eat, where to go, or what to do, Golagola simplifies decision-making with AI-powered suggestions and real-time data integration.
 
-- Features
+- Features\n
   Decision Support: AI-driven recommendations to help users make choices quickly and confidently.
   Weather Integration: Real-time weather updates using the KMA API to inform location-based decisions.
   Community: Connect with other users to share and discover decision-making tips and preferences.
   User Authentication: Secure login system for personalized user experiences.
 
-- Usage
+- Usage\n
   To run the application locally: https://tj1025.github.io/GOLAGOLA/
 
-- Contributing
+- Contributing\n
   We welcome contributions to enhance Golagola! To contribute:
   1. Fork the repository.
   2. Create a new branch (git checkout -b feature/your-feature-name).
