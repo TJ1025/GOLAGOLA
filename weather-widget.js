@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const weatherWidgetDiv = document.getElementById('currentWeatherWidget');
 
+    weatherWidgetDiv.style.cursor = 'pointer'; // 위젯에 마우스를 올리면 클릭 가능한 것처럼 보이게 합니다.
+    weatherWidgetDiv.onclick = () => { window.location.href = 'weather.html'; }; // 클릭 시 'weather.html'로 이동합니다.
+
     function dfs_xy_conv(code, v1, v2) {
         const DEGRAD = Math.PI / 180.0;
         const RADDEG = 180.0 / Math.PI;
