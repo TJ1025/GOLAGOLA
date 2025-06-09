@@ -2,6 +2,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const KMA_API_KEY = "1Xr7wYsVs3ubJCJJDYKqt46oaGQ8c0gktM2uj837bBuH1xG41u9op6v8kMGy2y3xYnYpAQDt+b+HJykqFlfl0g==";
     // 'locations' 변수는 locations_data.js 에서 전역으로 제공됩니다.
 
+    // ▼▼▼▼▼▼▼▼▼▼ 1. 디바운스 헬퍼 함수 추가 ▼▼▼▼▼▼▼▼▼▼
+    function debounce(func, delay) {
+        let timeoutId;
+        return function(...args) {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                func.apply(this, args);
+            }, delay);
+        };
+    }
+    // ▲▲▲▲▲▲▲▲▲▲ 디바운스 헬퍼 함수 끝 ▲▲▲▲▲▲▲▲▲▲
+
     const RE = 6371.00877; const GRID = 5.0; const SLAT1 = 30.0; const SLAT2 = 60.0;
     const OLON = 126.0; const OLAT = 38.0; const XO = 43; const YO = 136;
 
@@ -135,7 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
             skyDescription = skyState[currentSky] || '정보 미확인';
         }
 
-        // ★★★★★★★★★★ 여기를 수정했습니다 ★★★★★★★★★★
         let weatherHtml = `
             <div class="current-weather-info">
                 <h3>${locationName}</h3>
@@ -247,12 +258,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (searchInput && locationSelect && typeof locations !== 'undefined' && locations !== null) {
-        searchInput.addEventListener('input', () => {
+        // ▼▼▼▼▼▼▼▼▼▼ 2. 기존 이벤트 리스너를 debounce로 감싸기 ▼▼▼▼▼▼▼▼▼▼
+        searchInput.addEventListener('input', debounce(() => {
             const searchTerm = searchInput.value.toLowerCase().trim();
-            if (!searchTerm) { populateLocationOptions(locations); return; }
+            if (!searchTerm) { 
+                populateLocationOptions(locations); 
+                return; 
+            }
             const filteredLocations = locations.filter(loc => loc.name.toLowerCase().includes(searchTerm));
             populateLocationOptions(filteredLocations.length > 0 ? filteredLocations : []);
-        });
+        }, 1000)); // 1000ms 지연
+        // ▲▲▲▲▲▲▲▲▲▲ 이벤트 리스너 수정 끝 ▲▲▲▲▲▲▲▲▲▲
+
         if (!navigator.geolocation || locationSelect.options.length <=1 ) { populateLocationOptions(locations); }
     } else { console.warn("검색/선택 UI 또는 지역 데이터 문제"); }
     
