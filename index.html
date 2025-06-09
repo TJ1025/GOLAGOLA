@@ -5,52 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GOLAGOLA - 선택장애 해결 솔루션</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @font-face {
-            font-family: 'Cafe24Nyangi-W-v1.0';
-            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/Cafe24Nyangi-W-v1.0.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'HancomMalangMalang-Regular';
-            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2406-1@1.0/HancomMalangMalang-Regular.woff2') format('woff2');
-            font-weight: 400;
-            font-style: normal;
-        }
-        body { 
-            font-family: 'HancomMalangMalang-Regular', 'Inter', sans-serif;
-            background: linear-gradient(135deg, #6EE7B7, #3B82F6, #F472B6);
-            background-size: 200% 200%;
-            animation: gradientShift 15s ease infinite;
-        }
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .fade-in { 
-            animation: fadeIn 1s ease-in; 
-        }
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(20px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-        .btn-hover {
-            transition: all 0.3s ease;
-        }
-        .btn-hover:hover {
-            transform: scale(1.05);
-            background-color: #EC4899;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        .gola-font {
-            font-family: 'Cafe24Nyangi-W-v1.0', sans-serif;
-        }
-    </style>
-</head>
+    <link rel="stylesheet" href="index.css"> </head>
 <body class="min-h-screen">
-    <!-- 헤더 -->
     <header class="bg-white shadow-sm py-4 sticky top-0 z-10">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold text-pink-500 gola-font">GOLAGOLA</h1>
@@ -68,27 +24,25 @@
             </nav>
         </div>
     </header>
-</section>
-
-    <section id="home" class="py-20 text-center">
-        <div class="container mx-auto px-4 fade-in">
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">선택장애? <span class="gola-font">GOLAGOLA</span>로 해결!</h2>
-            <p class="text-lg text-white mb-8 max-w-2xl mx-auto drop-shadow">Solving Decision Paralysis</p>
-            <p class="text-lg text-white mb-8 max-w-2xl mx-auto drop-shadow">다양한 랜덤 도구와 친구들의 피드백으로 간편하게 선택해보세요.</p>
-            <!-- 선택 시작 폼 -->
-            <div class="bg-white bg-opacity-90 p-8 rounded-xl shadow-xl max-w-lg mx-auto">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">고민을 입력하세요!</h3>
-                <input type="text" id="quickDecision" placeholder="고민 입력 (예: 짜장면,짬뽕,탕수육)" class="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-pink-300">
-                <button onclick="startDecision()" class="bg-pink-500 text-white px-6 py-3 rounded-lg font-semibold btn-hover">지금 선택!</button>
+    <main class="container mx-auto px-4 py-8">
+        <section id="home" class="text-center py-16 fade-in">
+            <h2 class="text-5xl font-bold mb-6 gola-font text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 animate-pulse">선택장애? <br>GOLAGOLA로 해결!</h2>
+            <p class="text-xl text-gray-700 mb-10">Solving Decision Paralysis</p>
+            <p class="text-lg text-gray-600 mb-12">다양한 랜덤 도구와 친구들의 피드백으로 간편하게 선택해보세요.</p>
+            <div class="max-w-md mx-auto">
+                <input id="quickDecision" type="text" placeholder="지금 바로 고민을 입력하세요!" class="w-full px-4 py-3 rounded-lg shadow-md focus:ring-pink-500 focus:border-pink-500">
+                <button onclick="startDecision()" class="mt-6 bg-pink-500 text-white px-8 py-3 rounded-lg font-semibold text-lg btn-hover">지금 선택!</button>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 선택 도구 섹션 -->
-    <section id="features" class="py-16 bg-transparent">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-white text-center mb-12 drop-shadow-lg"><span class="gola-font">GOLAGOLA</span>로 선택장애 고민 해결</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <section id="weather-widget-section" class="my-8 text-center fade-in">
+            <div id="currentWeatherWidget" class="inline-block p-4 sm:p-6 bg-white bg-opacity-80 rounded-xl shadow-lg text-gray-700 mx-auto">
+                <p>날씨 정보를 불러오는 중...</p>
+            </div>
+        </section>
+        <section class="py-16">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">GOLAGOLA로 선택장애 고민 해결</h2>
+            <div class="grid md:grid-cols-3 gap-8">
                 <div class="p-6 rounded-xl shadow-xl bg-white bg-opacity-90 text-center fade-in">
                     <h3 class="text-xl font-semibold text-gray-800 mb-4">랜덤 도구</h3>
                     <p class="text-gray-600 mb-4">룰렛, 사다리타기, 레이스 등으로 골라골라!</p>
@@ -97,7 +51,7 @@
                 <div class="p-6 rounded-xl shadow-xl bg-white bg-opacity-90 text-center fade-in">
                     <h3 class="text-xl font-semibold text-gray-800 mb-4">AI 추천</h3>
                     <p class="text-gray-600 mb-4">당신의 취향에 맞춘 스마트한 제안을 받아보세요.</p>
-                    <button class="bg-pink-500 text-white px-6 py-3 rounded-lg font-semibold btn-hover">곧 출시!</button>
+                    <button class="bg-pink-500 text-white px-6 py-3 rounded-lg font-semibold btn-hover opacity-70 cursor-not-allowed">곧 출시!</button>
                 </div>
                 <div class="p-6 rounded-xl shadow-xl bg-white bg-opacity-90 text-center fade-in">
                     <h3 class="text-xl font-semibold text-gray-800 mb-4">커뮤니티</h3>
@@ -105,68 +59,15 @@
                     <a href="community.html" class="inline-block bg-pink-500 text-white px-6 py-3 rounded-lg font-semibold btn-hover">참여하기</a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- 푸터 -->
-    <footer class="bg-gray-800 text-white py-4">
-        <div class="container mx-auto px-4 text-center">
-            <p>© GOLAGOLA. All rights reserved.</p>
-        </div>
+        </section>
+    </main>
+    <footer class="text-center py-6 text-gray-600">
+        <p>© GOLAGOLA. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript -->
-    <script>
-        window.onload = function () {
-    const user = JSON.parse(localStorage.getItem("loggedInUser"));
-
-    if (user) {
-        document.getElementById("welcomeMessage").textContent = `${user.name}님, 환영합니다!`;
-    } else {
-        document.getElementById("welcomeMessage").textContent = `로그인이 필요합니다.`;
-    }
-};
-        function checkLoginStatus() {
-    const loggedInUser = localStorage.getItem('loggedInUser');
-    const authSection = document.getElementById('authSection');
-
-    if (loggedInUser) {
-        const user = JSON.parse(loggedInUser);
-        authSection.innerHTML = `
-            <span class="text-pink-500">${user.name}님</span>
-            <span class="mx-2 text-gray-500">|</span>
-            <a href="profile.html" class="text-gray-700 hover:text-pink-500 transition">내 프로필</a>
-            <span class="mx-2 text-gray-500">|</span>
-            <button onclick="logout()" class="text-gray-700 hover:text-pink-500 transition">로그아웃</button>
-        `;
-    }
-}
-function logout() {
-    localStorage.removeItem("loggedInUser");
-    window.location.reload();
-}
-
-
-        
-        function startDecision() {
-            const input = document.getElementById('quickDecision').value;
-            if (!input) {
-                alert('고민을 입력해주세요! 커뮤니티로 입력하고 소통해보세요.');
-                return;
-            }
-            const loggedInUser = localStorage.getItem('loggedInUser');
-            if (loggedInUser) {
-                // 커뮤니티로 고민 공유 가능
-                alert(`입력된 고민: ${input}\n랜덤 도구로 이동합니다!`);
-                window.location.href = `random.html?options=${encodeURIComponent(input)}`;
-            } else {
-                alert('커뮤니티에 공유하려면 로그인이 필요합니다!');
-                window.location.href = `login.html?redirect=random.html&options=${encodeURIComponent(input)}`;
-            }
-        }
-
-        // 페이지 로드 시 로그인 상태 확인
-        window.onload = checkLoginStatus;
-    </script>
+    <script src="index.js"></script> 
+    
+    <script src="locations_data.js"></script> 
+    <script src="weather-widget.js"></script>
 </body>
 </html>

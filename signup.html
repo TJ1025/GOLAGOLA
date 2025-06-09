@@ -5,52 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GOLAGOLA - 회원가입</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @font-face {
-            font-family: 'Cafe24Nyangi-W-v1.0';
-            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/Cafe24Nyangi-W-v1.0.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'HancomMalangMalang-Regular';
-            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2406-1@1.0/HancomMalangMalang-Regular.woff2') format('woff2');
-            font-weight: 400;
-            font-style: normal;
-        }
-        body { 
-            font-family: 'HancomMalangMalang-Regular', 'Inter', sans-serif;
-            background: linear-gradient(135deg, #9bb63d, #3B82F6, #da72f4);
-            background-size: 200% 200%;
-            animation: gradientShift 15s ease infinite;
-        }
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .fade-in { 
-            animation: fadeIn 1s ease-in; 
-        }
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(20px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-        .btn-hover {
-            transition: all 0.3s ease;
-        }
-        .btn-hover:hover {
-            transform: scale(1.05);
-            background-color: #EC4899;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        .gola-font {
-            font-family: 'Cafe24Nyangi-W-v1.0', sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="signup.css">
 </head>
 <body class="min-h-screen">
-    <!-- 헤더 -->
     <header class="bg-white shadow-sm py-4 sticky top-0 z-10">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold text-pink-500 gola-font">GOLAGOLA</h1>
@@ -64,13 +21,11 @@
         </div>
     </header>
 
-    <!-- 메인 섹션 -->
     <section class="py-20">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-white text-center mb-8 fade-in drop-shadow-lg">회원가입</h2>
             <p class="text-lg text-white text-center mb-12 max-w-2xl mx-auto fade-in drop-shadow"><span class="gola-font">GOLAGOLA</span>에 가입해 선택의 재미를 함께 즐기세요!</p>
 
-            <!-- 회원가입 폼 -->
             <div class="bg-white bg-opacity-90 p-8 rounded-xl shadow-xl max-w-lg mx-auto fade-in">
                 <h3 class="text-xl font-semibold text-gray-800 mb-4">회원 정보 입력</h3>
                 <form class="space-y-4">
@@ -95,73 +50,5 @@
             </div>
         </div>
     </section>
-
-    <!-- 푸터 -->
-    <footer class="bg-gray-800 text-white py-4">
-        <div class="container mx-auto px-4 text-center">
-            <p>© GOLAGOLA. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- 공통 유틸리티 스크립트 -->
-    <script src="utils.js"></script>
-
-    <!-- JavaScript -->
-    <script>
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-
-    function requestVerification() {
-        alert('인증 코드가 발송되었습니다! (예: 123456)');
-        document.getElementById('verifyCode').disabled = false;
-    }
-
-    function handleSignup(event) {
-        event.preventDefault();
-
-        const name = document.getElementById('name').value;
-        const userId = document.getElementById('id').value;
-        const gender = document.getElementById('gender').value;
-        const birthdate = document.getElementById('birthdate').value;
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
-        const verifyCode = document.getElementById('verifyCode').value;
-
-        if (!name || !userId || !gender || !birthdate || !password || !confirmPassword || !verifyCode) {
-            alert('모든 필드를 입력해주세요!');
-            return;
-        }
-
-        if (password !== confirmPassword) {
-            alert('비밀번호가 일치하지 않습니다!');
-            return;
-        }
-
-        if (verifyCode !== '123456') {
-            alert('인증 코드가 올바르지 않습니다!');
-            return;
-        }
-
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-
-        if (users.some(user => user.userId === userId)) {
-            alert('이미 존재하는 아이디입니다!');
-            return;
-        }
-
-        const newUser = {
-            name,
-            userId,
-            gender,
-            birthdate,
-            password
-        };
-
-        users.push(newUser);
-        localStorage.setItem("users", JSON.stringify(users));
-
-        alert('회원가입 성공! 로그인 페이지로 이동합니다.');
-        window.location.href = 'login.html';
-    }        
-    </script>
+    <script src="signup.js"></script>
 </body>
-</html>

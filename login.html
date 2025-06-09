@@ -5,52 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GOLAGOLA - 로그인</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @font-face {
-            font-family: 'Cafe24Nyangi-W-v1.0';
-            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/Cafe24Nyangi-W-v1.0.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'HancomMalangMalang-Regular';
-            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2406-1@1.0/HancomMalangMalang-Regular.woff2') format('woff2');
-            font-weight: 400;
-            font-style: normal;
-        }
-        body { 
-            font-family: 'HancomMalangMalang-Regular', 'Inter', sans-serif; 
-            background: linear-gradient(135deg, #6EE7B7, #3B82F6, #F472B6);
-            background-size: 200% 200%;
-            animation: gradientShift 15s ease infinite;
-        }
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .fade-in { 
-            animation: fadeIn 1s ease-in; 
-        }
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(20px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-        .btn-hover {
-            transition: all 0.3s ease;
-        }
-        .btn-hover:hover {
-            transform: scale(1.05);
-            background-color: #EC4899;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        .gola-font {
-            font-family: 'Cafe24Nyangi-W-v1.0', sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body class="min-h-screen">
-    <!-- 헤더 -->
     <header class="bg-white shadow-sm py-4 sticky top-0 z-10">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold text-pink-500"><span class="gola-font">GOLAGOLA</span></h1>
@@ -64,13 +21,11 @@
         </div>
     </header>
 
-    <!-- 메인 섹션 -->
     <section class="py-20">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-white text-center mb-8 fade-in drop-shadow-lg">로그인</h2>
             <p class="text-lg text-white text-center mb-12 max-w-2xl mx-auto fade-in drop-shadow"><span class="gola-font">GOLAGOLA</span> 커뮤니티에 참여하려면 로그인하세요!</p>
 
-            <!-- 로그인 폼 -->
             <div class="bg-white bg-opacity-90 p-8 rounded-xl shadow-xl max-w-lg mx-auto fade-in">
                 <h3 class="text-xl font-semibold text-gray-800 mb-4">계정으로 접속</h3>
                 <form class="space-y-4">
@@ -83,34 +38,12 @@
         </div>
     </section>
 
-    <!-- 푸터 -->
     <footer class="bg-gray-800 text-white py-4">
         <div class="container mx-auto px-4 text-center">
             <p>© GOLAGOLA. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script>
-function handleLogin(event) {
-    event.preventDefault();
-
-    const userId = document.getElementById('loginId').value;
-    const password = document.getElementById('loginPassword').value;
-
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-
-    const user = users.find(u => u.userId === userId && u.password === password);
-
-    if (user) {
-        alert(`${user.name}님 환영합니다!`);
-        localStorage.setItem("loggedInUser", JSON.stringify(user));
-        window.location.href = "index.html"; // 로그인 후 이동할 페이지
-    } else {
-        alert("아이디 또는 비밀번호가 틀렸습니다.");
-    }
-}
-    </script>
-
+    <script src="login.js"></script>
 </body>
 </html>
