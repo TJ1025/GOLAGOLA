@@ -1,5 +1,3 @@
-const users = JSON.parse(localStorage.getItem("users")) || [];
-
 function requestVerification() {
     alert('인증 코드가 발송되었습니다! (예: 123456)');
     document.getElementById('verifyCode').disabled = false;
